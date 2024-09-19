@@ -2,10 +2,12 @@ var buttons=document.querySelectorAll(".drum");
 for(var i=0;i<buttons.length;i++){
   buttons[i].addEventListener("click",function (){
     playDrums(this.innerHTML);
+    buttonAnimation(this.innerHTML);
   });
 }
 document.addEventListener("keydown",function (event){
   playDrums(event.key);
+  buttonAnimation(event.key);
 })
 function playDrums(button){
   switch(button){
@@ -40,4 +42,10 @@ function playDrums(button){
     default:
       console.log(button);
   }
+}
+function buttonAnimation(currentKey){
+  document.querySelector("."+currentKey).classList.add("pressed");
+  setTimeout(function() {
+    document.querySelector("."+currentKey).classList.remove("pressed");
+  } , 100);
 }
